@@ -15,3 +15,4 @@ React 是 Facework 在 2013 年开源Github上的Javascript库。
 * 浏览器中的React安装及使用
 * React基本语法
 * React组件&Props&State
+* React生命周期
