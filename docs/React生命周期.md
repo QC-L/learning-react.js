@@ -19,4 +19,4 @@
 * componentWillUnmount
 
 具体加载过程参考如下图:
-![](http://otuabc0ck.bkt.clouddn.com/learning-reactjs/image/png/cyclelife.png)
+![](http://otuabc0ck.bkt.clouddn.com/learning-reactjs/image/png/cycle-life.png)
