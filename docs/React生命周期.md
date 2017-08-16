@@ -17,5 +17,6 @@
 #### 卸载
 当一个组件被从DOM中移除时，该方法别调用:
 * componentWillUnmount
+
 具体加载过程参考如下图:
 ![](http://otuabc0ck.bkt.clouddn.com/learning-reactjs/image/png/cyclelife.png)
