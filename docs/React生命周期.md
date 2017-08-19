@@ -20,3 +20,31 @@
 
 具体加载过程参考如下图:
 ![](http://otuabc0ck.bkt.clouddn.com/learning-reactjs/image/png/cycle-life.png)
+
+#### 具体代码
+挂载生命周期具体代码如下:
+```
+    class CycleLife extends React.Component {
+        // 挂载过程
+        // 1.构造器函数
+        constructor(props) {
+            super(props);
+            console.log('构造器函数');
+        }
+        // 组件将要挂载
+        componentWillMount() {
+            console.log('组件将要被挂载');
+        }
+        // 组件渲染
+        render() {
+            console.log('组件被渲染');
+            return (
+                <h1>Hello, World</h1>
+            );
+        }
+        // 组件已经挂载
+        componentDidMount() {
+            console.log('组件已经被挂载');
+        }
+    }
+```

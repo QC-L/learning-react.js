@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class CycleLife extends React.Component {
+        // 挂载过程
+        // 1.构造器函数
+        constructor(props) {
+            super(props);
+            console.log('构造器函数');
+        }
+        // 组件将要挂载
+        componentWillMount() {
+            console.log('组件将要被挂载');
+        }
+        // 组件渲染
+        render() {
+            console.log('组件被渲染');
+            return (
+                <h1>Hello, World</h1>
+            );
+        }
+        // 组件已经挂载
+        componentDidMount() {
+            console.log('组件已经被挂载');
+        }
+    }
+    ReactDOM.render(
+        <CycleLife/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
