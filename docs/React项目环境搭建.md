@@ -53,10 +53,10 @@ module.exports = {
   }
 }
 ```
-### 2. 构建 build 构建目录
-在build中，新建 `webpack-base.js` 作为 webpack 的基本构建配置
+### 2. 构建 build/webpack.base.config.js 基础配置
+在build中，新建 `webpack.base.config.js` 作为 webpack 的基本构建配置
 ```
-touch webpack-base.js
+touch webpack.base.config.js
 ```
 在 `config/index.js` 文件中修改为如下效果:
 ```
@@ -75,7 +75,18 @@ module.exports = {
   }
 }
 ```
-在 webpack.base.js 文件中编写内容如下
+在 webpack.base.config.js 同级新建一个 utils.js 工具类
+```
+const config = require('../config')
+const path = require('path')
+exports.assetsPath = function (_path) {
+  var assetsSubDirectory = process.env.NODE_ENV === 'production'
+        ? config.build.assetsSubDirectory
+        : config.dev.assetsSubDirectory
+  return path.posix.join(assetsSubDirectory, _path)
+}
+```
+在 webpack.base.config.js 文件中编写内容如下
 ```
 const path = require('path')
 const webpack = require('webpack')
@@ -120,17 +131,171 @@ module.exports = {
 ```
 最后，根据需求下载所有需要的开发依赖(dev)
 ```
-npm install --save-dev webpack style-loader stylus-loader css-loader babel-loader url-loader  babel-core babel-preset-env babel-preset-react babel-preset-stage-0 stylus html-webpack-plugin file-loader
+npm install --save-dev webpack style-loader stylus-loader css-loader babel-loader url-loader  babel-core babel-preset-env babel-preset-react babel-preset-stage-0 stylus file-loader
 ```
+### 3. 配置 webpack.dev.config.js
+下载 webpack.dev.config.js 所需依赖
+```
+npm install --save-dev html-webpack-plugin friendly-errors-webpack-plugin eventsource-polyfill webpack-hot-middleware
+```
+创建 dev-client.js 并填写如下代码
+```
+require('eventsource-polyfill')
+var hotClient = require('webpack-hot-middleware/client?noInfo=true&reload=true')
+
+hotClient.subscribe(function (event) {
+  if (event.action === 'reload') {
+    window.location.reload()
+  }
+})
+```
+创建 webpack.dev.config.js 文件，并填入如下代码
+```
+const merge = require('webpack-merge')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+
+const config = require('../config')
+const baseWebpackConfig = require('./webpack.base.config')
+
+baseWebpackConfig.entry = ['./build/dev-client'].concat(baseWebpackConfig.entry)
+
+module.exports = merge(baseWebpackConfig, {
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env': config.dev.env
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new FriendlyErrorsPlugin()
+  ]
+})
+```
+### 4.配置 dev-server.js 服务
+下载 dev-server.js 对应的依赖文件
+```
+npm install --save-dev opn express http-proxy-middleware webpack-dev-middleware webpack-hot-middleware html-webpack-plugin-after-emit connect-history-api-fallback
+```
+创建 dev-server.js 代码内容如下
+```
+const config = require('../config')
+if (!process.env.NODE_ENV) {
+  process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
+}
+
+const opn = require('opn')
+const path = require('path')
+const express = require('express')
+const webpack = require('webpack')
+const proxyMiddleware = require('http-proxy-middleware')
+const webpackConfig = require('./webpack.dev.config')
+
+const port = process.env.PORT || config.dev.port
+const proxyTable = config.dev.proxyTable
+
+const app = express()
+
+const compiler = webpack(webpackConfig)
+
+const devMiddleware = require('webpack-dev-middleware')(compiler, {
+  publicPath: webpackConfig.output.publicPath,
+  quiet: true,
+  noInfo: true
+})
+
+const hotMiddleware = require('webpack-hot-middleware')(compiler)
+
+compiler.plugin('compilation', function (compilation) {
+  compilation.plugin('html-webpack-plugin-after-emit', function (data, cb) {
+    hotMiddleware.publish({ action: 'reload' })
+    cb()
+  })
+})
+
+Object.keys(proxyTable).forEach(function (context) {
+  let options = proxyTable[context]
+  if (typeof options === 'string') {
+    options = { target: options }
+  }
+  app.use(proxyMiddleware(options.filter || context, options))
+})
+
+const staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+app.use(staticPath, express.static('./static'))
+
+app.use(require('connect-history-api-fallback')())
+
+app.use(devMiddleware)
+app.use(hotMiddleware)
+
+const autoOpenBrowser = !!config.dev.autoOpenBrowser
+
+const uri = 'http://localhost:' + port
+
+let _resolve
+let readyPromise = new Promise(resolve => {
+  _resolve = resolve
+})
+
+console.log('> Starting dev server...')
+devMiddleware.waitUntilValid(() => {
+  console.log('> Listening at ' + uri + '\n')
+    // when env is testing, don't need open it
+  if (autoOpenBrowser && process.env.NODE_ENV !== 'testing') {
+    opn(uri)
+  }
+  _resolve()
+})
+
+let server = app.listen(port)
+
+module.exports = {
+  ready: readyPromise,
+  close: () => {
+    server.close()
+  }
+}
+```
+### 5. 下载 React、ReactDOM
 下载项目依赖
 ```
 npm install --save react react-dom
 ```
-
-
-
-
-
+并执行如下代码，查看效果 
+```
+node build/dev-server.js
+```
+### 6. 配置 standard-eslint 进行代码规范限制
+下载 standard 相关依赖
+```
+npm install --save-dev standard eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
+```
+并配置 webpack.base.config.js 的 rules, 添加如下规则
+```
+{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        include: [resolve('src'), resolve('test')],
+        options: {
+          formatter: require('eslint-friendly-formatter')
+        }
+}
+```
+在文件夹根目录中创建 `.eslintrc`, 并添加如下代码
+```
+{
+  "extends": ["standard", "standard-react"]
+}
+```
+### 6. 总结
 dev-client 配置热加载
 dev-server 配置开发环境服务
 utils.js 公用函数
