@@ -279,14 +279,14 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 并配置 webpack.base.config.js 的 rules, 添加如下规则
 ```
 {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
+  test: /\.js$/,
+  exclude: /node_modules/,
+  loader: 'eslint-loader',
+  enforce: 'pre',
+  include: [resolve('src'), resolve('test')],
+  options: {
+    formatter: require('eslint-friendly-formatter')
+  }
 }
 ```
 在文件夹根目录中创建 `.eslintrc`, 并添加如下代码
