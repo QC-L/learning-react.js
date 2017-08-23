@@ -274,7 +274,7 @@ node build/dev-server.js
 ### 6. 配置 standard-eslint 进行代码规范限制
 下载 standard 相关依赖
 ```
-npm install --save-dev standard eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react
+npm install --save-dev standard eslint-config-standard eslint-config-standard-react eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node eslint-plugin-react eslint-friendly-formatter eslint-loader babel-eslint
 ```
 并配置 webpack.base.config.js 的 rules, 添加如下规则
 ```
@@ -295,10 +295,12 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
   "extends": ["standard", "standard-react"]
 }
 ```
-### 6. 总结
+### 7. 总结
+```
 dev-client 配置热加载
 dev-server 配置开发环境服务
 utils.js 公用函数
 webpack.base.js webpack基础配置
 webpack.dev.js webpack开发环境配置
 webpack.prod.js webpack生产环境配置
+```
