@@ -297,6 +297,44 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 ```
 ### 7. 总结
 ```
+.
+├── package.json                 
+├── README.md                    
+├── .gitignore                   // git 忽略文件
+├── .eslintrc.js                 // webpack 配置文件
+├── test                         // test 目录：测试文件
+├── dist                         // dist 目录：打包文件目录
+├── build                        // build  目录：放置 build 打包文件
+├── src                          // 源文件目录
+│   ├── asserts                  // 资源 目录 
+│   │   ├── images
+│   │   │   ├── 1.jpg
+│   │   └── styles
+│   ├── modules                       // 模块目录 
+│   │   ├── index               
+│   │   ├── home                 // home 页面 js 目录
+│   │   │   ├── components
+│   │   │   │   ├── App.js
+│   │   │   ├── index.js         // 每个页面会有一个入口，统一为 index.js
+│   │   ├── page2                // page2 页面 js 目录
+│   │   │   ├── components
+│   │   │   │   ├── App.js
+│   │   │   └── index.js
+│   └── style                    // style 目录
+│       ├── common               // 公共样式区域
+│       │   ├── varables.less    // 公共共享变量
+│       │   ├── index.less       // 公共样式入口
+│       ├── home                 // home 页面样式目录    
+│       │   ├── components       // home 页面组件样式目录
+│       │   │   ├── App.less 
+│       │   ├── index.less       // home 页面样式入口
+│       ├── page2                // page2 页面样式目录
+│       │   ├── components       
+│       │   │   ├── App.less
+│       │   └── index.less       
+├── vendor
+│   └── bootstrap
+└── └── jquery
 dev-client 配置热加载
 dev-server 配置开发环境服务
 utils.js 公用函数
