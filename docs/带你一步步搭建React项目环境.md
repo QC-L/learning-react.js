@@ -305,6 +305,12 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 ├── test                         // test 目录：测试文件
 ├── dist                         // dist 目录：打包文件目录
 ├── build                        // build  目录：放置 build 打包文件
+│   ├── dev-client               // 配置热加载 
+│   ├── dev-server               // 配置开发服务器
+│   ├── utils.js                 // 公用函数
+│   ├── webpack.base.js          // webpack基础配置
+│   ├── webpack.dev.js           // webpack开发环境配置
+│   └── webpack.prod.js          // webpack生产环境配置
 ├── src                          // 源文件目录
 │   ├── asserts                  // 资源 目录 
 │   │   ├── images
@@ -332,13 +338,6 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 │       │   ├── components       
 │       │   │   ├── App.less
 │       │   └── index.less       
-├── vendor
-│   └── bootstrap
-└── └── jquery
-dev-client 配置热加载
-dev-server 配置开发环境服务
-utils.js 公用函数
-webpack.base.js webpack基础配置
-webpack.dev.js webpack开发环境配置
-webpack.prod.js webpack生产环境配置
+├── static
+│   ├──  .gitkeep
 ```
