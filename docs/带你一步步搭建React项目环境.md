@@ -332,9 +332,13 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 │       │   ├── home
 │       │   │   ├── home.styl
 │   ├── modules                  // 模块目录 
-│       ├── index               
+│       ├── index   
+│       │   ├── index.html
+│       │   ├── App.js           
 │       │   ├── index.js         // 每个页面会有一个入口，统一为 index.js
 │       ├── login                // home 页面 js 目录
+│       │   ├── login.html
+│       │   ├── App.js  
 │       │   ├── index.js         // 每个页面会有一个入口，统一为 index.js
 ├── static                       // 静态资源目录
 │   └── .gitkeep
