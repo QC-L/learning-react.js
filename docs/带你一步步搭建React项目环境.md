@@ -311,33 +311,31 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 │   ├── webpack.base.js          // webpack基础配置
 │   ├── webpack.dev.js           // webpack开发环境配置
 │   └── webpack.prod.js          // webpack生产环境配置
+├── config
+│   ├── dev.env.js               // 开发环境设置
+│   ├── index.js                 // webpack所需的一些配置文件
+│   └── prod.env.js              // 生产环境设置
 ├── src                          // 源文件目录
-│   ├── asserts                  // 资源 目录 
-│   │   ├── images
-│   │   │   ├── 1.jpg
-│   │   └── styles
-│   ├── modules                       // 模块目录 
-│   │   ├── index               
-│   │   ├── home                 // home 页面 js 目录
-│   │   │   ├── components
-│   │   │   │   ├── App.js
-│   │   │   ├── index.js         // 每个页面会有一个入口，统一为 index.js
-│   │   ├── page2                // page2 页面 js 目录
-│   │   │   ├── components
-│   │   │   │   ├── App.js
-│   │   │   └── index.js
-│   └── style                    // style 目录
-│       ├── common               // 公共样式区域
-│       │   ├── varables.less    // 公共共享变量
-│       │   ├── index.less       // 公共样式入口
-│       ├── home                 // home 页面样式目录    
-│       │   ├── components       // home 页面组件样式目录
-│       │   │   ├── App.less 
-│       │   ├── index.less       // home 页面样式入口
-│       ├── page2                // page2 页面样式目录
-│       │   ├── components       
-│       │   │   ├── App.less
-│       │   └── index.less       
-├── static
-│   ├──  .gitkeep
+│   ├── assets                   // 资源 目录 
+│       ├── images
+│       │   ├── home.jpg
+│       │   └── login.jpg
+│       ├── components
+│       │   ├── index
+│       │   │   ├── header.js
+│       │   ├── login
+│       │   │   ├── login.js
+│       └── styles               // 样式表
+│       │   ├── common           // 共用样式
+│       │   │   ├── varables.styl    
+│       │   │   ├── index.styl       
+│       │   ├── home
+│       │   │   ├── home.styl
+│   ├── modules                 // 模块目录 
+│       ├── index               
+│       │   ├── index.js        // 每个页面会有一个入口，统一为 index.js
+│       ├── login               // home 页面 js 目录
+│       │   ├── index.js        // 每个页面会有一个入口，统一为 index.js
+├── static                      // 静态资源目录
+│   └──   .gitkeep
 ```
