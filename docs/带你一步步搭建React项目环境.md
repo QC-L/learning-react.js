@@ -331,11 +331,11 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 │       │   │   ├── index.styl       
 │       │   ├── home
 │       │   │   ├── home.styl
-│   ├── modules                 // 模块目录 
+│   ├── modules                  // 模块目录 
 │       ├── index               
-│       │   ├── index.js       // 每个页面会有一个入口，统一为 index.js
-│       ├── login              // home 页面 js 目录
-│       │   ├── index.js       // 每个页面会有一个入口，统一为 index.js
-├── static                     // 静态资源目录
+│       │   ├── index.js         // 每个页面会有一个入口，统一为 index.js
+│       ├── login                // home 页面 js 目录
+│       │   ├── index.js         // 每个页面会有一个入口，统一为 index.js
+├── static                       // 静态资源目录
 │   └── .gitkeep
 ```
