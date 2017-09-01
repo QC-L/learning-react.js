@@ -22,29 +22,76 @@
 ![](http://otuabc0ck.bkt.clouddn.com/learning-reactjs/image/png/cycle-life.png)
 
 #### 具体代码
-挂载生命周期具体代码如下:
-```
-    class CycleLife extends React.Component {
-        // 挂载过程
-        // 1.构造器函数
-        constructor(props) {
-            super(props);
-            console.log('构造器函数');
+1. 挂载
+    ```
+        class CycleLife extends React.Component {
+            // 挂载过程
+            // 1.构造器函数
+            constructor(props) {
+                super(props);
+                console.log('构造器函数');
+            }
+            // 2.组件将要挂载
+            componentWillMount() {
+                console.log('组件将要被挂载');
+            }
+            // 3.组件渲染
+            render() {
+                console.log('组件被渲染');
+                return (
+                    <h1>Hello, World</h1>
+                );
+            }
+            // 4.组件已经挂载
+            componentDidMount() {
+                console.log('组件已经被挂载');
+            }
         }
-        // 组件将要挂载
-        componentWillMount() {
-            console.log('组件将要被挂载');
+    ```
+2. state 变更触发更新
+    ```
+        class CycleLife extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    time: new Date()
+                }
+            }
+            changeTime = () => {
+                this.setState({
+                    time: new Date()
+                })
+            }
+            componentDidMount() {
+                // 每隔一秒修改时间, 实现时钟效果
+                setInterval(this.changeTime, 1000)
+            }
+            // 1. 判断是否需要组件更新, 默认 true
+            shouldComponentUpdate(nextProps, nextState) {
+                // 返回 false 时, 后续函数不执行
+                return true
+            }
+            // 2. 组件将要更新
+            componentWillUpdate(nextProps, nextState) {
+                console.log('nextProps: ', nextProps)
+                console.log('nextState: ', nextState)
+                console.log('组件将要被挂载')
+            }
+            // 3. 组件被重新渲染
+            render() {
+                console.log('组件被重新渲染')
+                return (
+                    <h1>{this.state.time.toLocaleString()}</h1>
+                );
+            }
+            // 4. 组件已经更新
+            componentDidUpdate() {
+                console.log('组件已经被挂载')
+            }
         }
-        // 组件渲染
-        render() {
-            console.log('组件被渲染');
-            return (
-                <h1>Hello, World</h1>
-            );
-        }
-        // 组件已经挂载
-        componentDidMount() {
-            console.log('组件已经被挂载');
-        }
-    }
-```
+        ReactDOM.render(
+            <CycleLife/>,
+            document.getElementById('root')
+        );
+    ```
+3. 父 -> 子 传递属性时, 发生的生命周期

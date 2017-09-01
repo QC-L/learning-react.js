@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class CycleLife extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                time: new Date()
+            }
+        }
+        changeTime = () => {
+            this.setState({
+                time: new Date()
+            })
+        }
+        componentDidMount() {
+            // 每隔一秒修改时间, 实现时钟效果
+            setInterval(this.changeTime, 1000)
+        }
+        // 1. 判断是否需要组件更新, 默认 true
+        shouldComponentUpdate(nextProps, nextState) {
+            // 返回 false 时, 后续函数不执行
+            return true
+        }
+        // 2. 组件将要更新
+        componentWillUpdate(nextProps, nextState) {
+            console.log('nextProps: ', nextProps)
+            console.log('nextState: ', nextState)
+            console.log('组件将要被挂载')
+        }
+        // 3. 组件被重新渲染
+        render() {
+            console.log('组件被重新渲染')
+            return (
+                <h1>{this.state.time.toLocaleString()}</h1>
+            );
+        }
+        // 4. 组件已经更新
+        componentDidUpdate() {
+            console.log('组件已经被挂载')
+        }
+    }
+    ReactDOM.render(
+        <CycleLife/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
