@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+    class CycleLife extends React.Component {
+        static propTypes = {
+            content: React.PropTypes.string
+        }
+        constructor(props) {
+            super(props)
+        }
+        // 1. 父 -> 子传递props时, 触发
+        componentWillReceiveProps(nextProps, nextState) {
+            console.log('组件属性被父级修改')
+            console.log('nextProps: ', nextProps)
+            console.log('nextState: ', nextState)
+        }
+        // 2. 判断是否需要组件更新, 默认 true
+        shouldComponentUpdate(nextProps, nextState) {
+            console.log('判断组件是否需要更新')
+            // 返回 false 时, 后续函数不执行
+            return true
+        }
+        // 3. 组件将要更新
+        componentWillUpdate(nextProps, nextState) {
+            console.log('nextProps: ', nextProps)
+            console.log('nextState: ', nextState)
+            console.log('组件将要被挂载')
+        }
+        // 4. 组件被重新渲染
+        render() {
+            console.log('组件被重新渲染')
+            return (
+                <h1>{this.props.content}</h1>
+            );
+        }
+        // 5. 组件已经更新
+        componentDidUpdate() {
+            console.log('组件已经被挂载')
+        }
+    }
+    class FatherComponent extends React.Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                content: '生命周期展示'
+            }
+        }
+        componentDidMount() {
+            this.setState({
+                content: '生命周期展示被改变'
+            })
+        }
+        render() {
+            return (
+                <CycleLife content={this.state.content}/>
+            )
+        }
+    }
+    ReactDOM.render(
+        <FatherComponent />,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>
