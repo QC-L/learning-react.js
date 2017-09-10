@@ -21,4 +21,4 @@ React 是 Facework 在 2013 年开源Github上的Javascript库。
 * [带你一步步搭建React项目环境](./docs/带你一步步搭建React项目环境.md)
 * [React-Router](./docs/React-Router.md)
 * Ant-Desgin
-* Redux
+* [Redux](./docs/React-Redux.md)
