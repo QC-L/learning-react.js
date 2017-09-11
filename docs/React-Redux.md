@@ -6,6 +6,19 @@ Redux 的三大核心概念:
 * reducer
 * store
 * action
+#### Store
+Store 是中央数据管理，Store 职能如下:
+1. 用于管理所有状态
+2. 提供 `getState()` 获取 state
+3. 通过 `dispatch()` 更新 state
+#### Reducer
+告诉 store 如何更新状态。
+#### Action
+Action 本质上是 JavaScript 普通对象。 Store 通过 dispatch 携带 Action ，触发 reducer 修改状态。
+参数:
+action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。
+其它参数，由你自己制定。
+
 ### 安装
 ```
 yarn add redux react-redux
