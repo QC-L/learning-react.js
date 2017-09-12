@@ -20,10 +20,26 @@ action 内必须使用一个字符串类型的 type 字段来表示将要执行�
 其它参数，由你自己制定。
 
 ### 安装
+在需要使用 redux 的地方安装 redux、react-redux
 ```
 yarn add redux react-redux
 ```
 or
 ```
 npm i -S redux react-redux
+```
+### 使用
+```
+create-react-app react-redux-test
+yarn add redux react-redux
+```
+在 src 下创建一个store.js，文件内容如下:
+```
+import { createStore } from 'redux'
+import rootReducer from './reducers'
+
+// 创建 状态管理器(仓库)
+// 参数: reducer
+const store = createStore(rootReducer)
+export default store
 ```
