@@ -40,7 +40,7 @@ npm install --save react react-dom babel-standalone
 	 <!-- 引入 babel预编译 库 -->
 	 <script src="node_modules/babel-standalone/babel.js"></script> 
 	```
-2. 编写 Hello World
+2. 在 body 中，编写 Hello World
     ```
     <div id="example"></div>
    <script type="text/babel">
