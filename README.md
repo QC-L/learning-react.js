@@ -12,7 +12,7 @@ React 是 Facework 在 2013 年开源Github上的Javascript库。
   * 现有 MVC 框架无法满足该公司的需求, Facebook 编写了 React 框架
   * React 核心库 react-router 路由 Redux 状态管理器 fetch 请求  React-Native 移动端
 ## 目录
-* 浏览器中的React安装及使用
+* [HTML中的React安装及使用](./docs/HTML中的React安装及使用.md)
 * React基本语法
 * React组件&Props&State
 * [React组件间通信](./docs/React组件间通信.md)
