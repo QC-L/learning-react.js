@@ -29,7 +29,7 @@ npm install --save react react-dom babel-standalone
 </body>
 </html>
 ```
-#### 引入
+#### 使用
 1. 引入依赖
       在 index.html 的 head 中引入刚刚所下载的依赖
 	```
@@ -40,4 +40,17 @@ npm install --save react react-dom babel-standalone
 	 <!-- 引入 babel预编译 库 -->
 	 <script src="node_modules/babel-standalone/babel.js"></script> 
 	```
-2. 
+2. 编写 Hello World
+    ```
+    <div id="example"></div>
+   <script type="text/babel">
+    // 通过 ReactDOM 渲染
+    // 参数1: 要渲染的内容
+    // 参数2: 渲染位置
+    ReactDOM.render(
+        <h1>Hello, World!</h1>,
+        document.getElementById('example')
+    );
+   </script>
+    ```
+至此，我们通过 React 在HTML实现了一个 Hello, World! 的效果
