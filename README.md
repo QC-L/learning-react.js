@@ -14,7 +14,7 @@ React 是 Facework 在 2013 年开源Github上的Javascript库。
 ## 目录
 * [HTML中的React安装及使用](./docs/HTML中的React安装及使用.md)
 * [React基本语法](./docs/React基本语法.md)
-* React组件&Props&State
+* [React组件&Props&State](./docs/React组件&Props&State.md)
 * [React组件间通信](./docs/React组件间通信.md)
 * [React生命周期](./docs/React生命周期.md)
 * [React及webpack环境搭建](./docs/React及webpack环境搭建.md )
