@@ -24,7 +24,7 @@
 #### 具体代码
 1. 挂载
     先来说说挂载的流程，该流程从 constructor -> componentDidMount 。
-    整个过程只执行一次。具体代码如下:
+    当该组件第一次创建时，会执行该过程。整个过程只执行一次，具体代码如下:
     ```
         class CycleLife extends React.Component {
             // 挂载过程
