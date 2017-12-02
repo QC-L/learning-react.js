@@ -346,5 +346,6 @@ npm install --save-dev standard eslint-config-standard eslint-config-standard-re
 以上为项目目录结构，大家可以按照自己的习惯搭建目录层级。
 整体来说，基本还原了 vue-cli 搭建出来的 Single-Page 的效果。
 附上项目环境地址
+
 [Single-Page](https://github.com/QC-L/react-project-template/tree/webpack-single-page)  
 [Muti-Page](https://github.com/QC-L/react-project-template/tree/webpack-multi-page)
